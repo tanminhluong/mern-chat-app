@@ -6,7 +6,7 @@ const chatRoutes = require("./routes/chatRoutes.js");
 const messageRoutes = require("./routes/messageRoutes.js");
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 const path = require("path");
-// const cors = require("cors");
+const cors = require("cors");
 
 dotenv.config();
 const app = express();
