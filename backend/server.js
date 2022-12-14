@@ -12,16 +12,7 @@ dotenv.config();
 const app = express();
 connectDB();
 
-app.use(function (req, res, next) {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://mern-chat-orsr.onrender.com/"
-  );
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  next();
-});
+app.use(cors());
 app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/chats", chatRoutes);
@@ -51,6 +42,9 @@ const server = app.listen(PORT, console.log("Server start on port", PORT));
 
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
+  cors: {
+    origin: "https://mern-chat-orsr.onrender.com",
+  },
 });
 
 io.on("connection", (socket) => {
