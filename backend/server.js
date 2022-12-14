@@ -12,7 +12,11 @@ dotenv.config();
 const app = express();
 connectDB();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://mern-chat-orsr.onrender.com",
+  })
+);
 app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/chats", chatRoutes);
@@ -42,9 +46,6 @@ const server = app.listen(PORT, console.log("Server start on port", PORT));
 
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
-  cors: {
-    origin: "https://mern-chat-orsr.onrender.com",
-  },
 });
 
 io.on("connection", (socket) => {
