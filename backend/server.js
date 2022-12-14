@@ -17,7 +17,7 @@ app.use("/api/chats", chatRoutes);
 app.use("/api/messages", messageRoutes);
 
 // ----------deployment
-const _dirname1 = path.resolve();
+const __dirname1 = path.resolve();
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname1, "/frontend/build")));
   app.get("*", (req, res) => {
