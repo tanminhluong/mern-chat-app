@@ -6,17 +6,19 @@ const chatRoutes = require("./routes/chatRoutes.js");
 const messageRoutes = require("./routes/messageRoutes.js");
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 const path = require("path");
-const cors = require("cors");
+// const cors = require("cors");
 
 dotenv.config();
 const app = express();
 connectDB();
 
-app.use(
-  cors({
-    origin: "https://mern-chat-orsr.onrender.com",
-  })
-);
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  next();
+});
 app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/chats", chatRoutes);
