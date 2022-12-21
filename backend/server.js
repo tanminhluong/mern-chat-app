@@ -43,7 +43,7 @@ const server = app.listen(PORT, console.log("Server start on port", PORT));
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://chat-app-byx2.onrender.com",
+    origin: "http://localhost:3000",
   },
 });
 
